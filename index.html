@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yosef Gunawan | UI/UX Designer</title>
+
+<title>Yosef Gunawan | Digital Product & Automation</title>
 
 <style>
 *{
@@ -22,12 +23,12 @@ body{
 }
 
 .card{
-    width:420px;
-    background:white;
+    width:430px;
+    background:#fff;
     padding:40px;
     border-radius:20px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
 img{
@@ -40,13 +41,37 @@ img{
 
 h1{
     font-size:30px;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
-p{
+.role{
     color:#666;
     line-height:1.6;
-    margin-bottom:30px;
+    margin-bottom:25px;
+    min-height:50px;
+}
+
+.switch{
+    display:flex;
+    background:#f2f2f2;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.switch button{
+    flex:1;
+    border:none;
+    padding:14px;
+    cursor:pointer;
+    background:transparent;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.switch button.active{
+    background:#9100FD;
+    color:white;
 }
 
 .button{
@@ -79,24 +104,80 @@ p{
 
 <div class="card">
 
-<!-- kalau tidak pakai foto, hapus baris img -->
 <img src="pp-yosef.png" alt="Yosef Gunawan">
 
 <h1>Yosef Gunawan</h1>
 
-<p>
+<div class="switch">
+    <button id="uiuxBtn" class="active" onclick="changeRole('uiux')">
+        UI/UX Designer
+    </button>
+
+    <button id="rpaBtn" onclick="changeRole('rpa')">
+        RPA Developer
+    </button>
+</div>
+
+<p class="role" id="description">
 UI/UX Designer passionate about crafting intuitive digital experiences and solving real user problems.
 </p>
 
-<a class="button view" href="portfolio.pdf" target="_blank">
+<a id="viewBtn" class="button view" href="portfolio.pdf" target="_blank">
 View Portfolio
 </a>
 
-<a class="button download" href="portfolio.pdf" download>
+<a id="downloadBtn" class="button download" href="portfolio.pdf" download>
 Download PDF
 </a>
 
 </div>
+
+<script>
+
+function changeRole(role){
+
+    const uiuxBtn=document.getElementById("uiuxBtn");
+    const rpaBtn=document.getElementById("rpaBtn");
+
+    const description=document.getElementById("description");
+    const viewBtn=document.getElementById("viewBtn");
+    const downloadBtn=document.getElementById("downloadBtn");
+
+    uiuxBtn.classList.remove("active");
+    rpaBtn.classList.remove("active");
+
+    if(role==="uiux"){
+
+        uiuxBtn.classList.add("active");
+
+        description.innerHTML=
+        "UI/UX Designer passionate about crafting intuitive digital experiences and solving real user problems.";
+
+        viewBtn.href="portfolio.pdf";
+        downloadBtn.href="portfolio.pdf";
+
+        viewBtn.innerHTML="View Portfolio";
+        downloadBtn.innerHTML="Download PDF";
+
+    }else{
+
+        rpaBtn.classList.add("active");
+
+        description.innerHTML=
+        "Automation Developer with 4+ years of experience building enterprise automation using UiPath, C#, OCR, APIs, and internal RPA frameworks.";
+
+        /* Ganti rpa.pdf jika nanti sudah punya portfolio RPA */
+        viewBtn.href="portfolio.pdf";
+        downloadBtn.href="portfolio.pdf";
+
+        viewBtn.innerHTML="View RPA Profile";
+        downloadBtn.innerHTML="Download PDF";
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>
